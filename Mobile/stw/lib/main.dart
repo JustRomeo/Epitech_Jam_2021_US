@@ -54,8 +54,8 @@ class _MyMainPageState extends State<MyMainPage> {
             bottomNavigationBar: BottomNavigationBar(
                 items: const <BottomNavigationBarItem>[
                     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-                    BottomNavigationBarItem(icon: Icon(Icons.business), label: 'My Profil'),
-                    BottomNavigationBarItem(icon: Icon(Icons.school), label: 'The World'),
+                    BottomNavigationBarItem(icon: Icon(Icons.person), label: 'My Profil'),
+                    BottomNavigationBarItem(icon: Icon(Icons.eco_outlined), label: 'The World'),
                 ],
                 currentIndex: _selectedIndex,
                 selectedItemColor: Colors.amber[800],

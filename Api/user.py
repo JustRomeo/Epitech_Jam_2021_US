@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import glob
 import time
 import random
 import socket
@@ -37,13 +38,12 @@ def generateToken(nbr : int = 25):
     return token
 
 def howManyinDb():
-    liste = glob.glob("../Database/")
+    liste = glob.glob("Database/*")
     liste.sort()
     return len(liste)
 def getFromDB(username : str, password : str):
-    liste = glob.glob("../Database/")
+    liste = glob.glob("Database/*")
     liste.sort()
-
     for _file in liste:
         try:
             if getData(_file)['username'] == username and getData(_file)['password'] == password:
@@ -61,10 +61,10 @@ def getData(path : str):
                 loaded = json.load(json_file)
             return loaded
         except:
-        return None
+            return None
     return None
 def saveinFile(filepath : str, data : dict):
-    if path == None or data == None:
+    if filepath == None or data == None:
         return
     with open(filepath, 'w+') as f:
         json.dump(data, f)
@@ -72,7 +72,7 @@ def saveinFile(filepath : str, data : dict):
 @APP.route('/create', methods=['POST', 'OPTIONS'])
 @cross_origin()
 def create():
-    root : str = "../Database/"
+    root : str = "Database/"
     try:
         data = request.get_json()
         username = data['username']
@@ -86,10 +86,10 @@ def create():
             "token": token,
             "username": username,
             "password": password,
-            "mission": {"megots": 0, "CarbonEco": 0, "WaterLiter": 0},
+            "mission": {"dechets": 0, "CarbonEco": 0, "WaterLiter": 0},
             "name": username.split(" ")[0] if " " in username else (username.split(".")[0] if "." in username else username)
         }
-        saveinFile(root + "/" + token)
+        saveinFile(root + "/" + token, toSave)
         return {"status": "success", "token": token}
     except Exception as e:
         return {"status": "Fail", "message": str(e)}
@@ -121,7 +121,8 @@ def connect():
         user = getFromDB(username, password)
         if user == None:
             raise ValueError("Unknown user.")
-
+        if not os.path.exists(root + "/" + token):
+            raise ValueError("Token Unknown")
         jsonn = {"status": "success", "data": user}
     except Exception as e:
         return {"status": "Fail", "message": str(e)}

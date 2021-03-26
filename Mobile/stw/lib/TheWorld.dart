@@ -107,7 +107,6 @@ class _WorldPageState extends State<WorldPage> {
           ),
           SizedBox(height: 20),
           Container(
-              width: 3000,
               child: RaisedButton(
                   onPressed: () {},
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80)),
@@ -125,7 +124,7 @@ class _WorldPageState extends State<WorldPage> {
                       child: Container(
                           constraints: BoxConstraints(maxWidth: 300, minHeight: 50),
                           alignment: Alignment.center,
-                          child: Text("Contact me", style: TextStyle(color: Colors.white, fontSize: 26, fontWeight:FontWeight.w300)),
+                          child: Text("Ajout d'une donnée.", style: TextStyle(color: Colors.white, fontSize: 26, fontWeight:FontWeight.w300)),
                       ),
                   )
               ),
