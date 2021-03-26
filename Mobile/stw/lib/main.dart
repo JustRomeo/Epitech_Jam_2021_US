@@ -1,29 +1,39 @@
 import 'package:flutter/material.dart';
 
+import 'package:stw/Home.dart';
 import 'package:stw/Profile.dart';
 import 'package:stw/TheWorld.dart';
+import 'package:stw/Connection.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-    const MyApp({Key key}) : super(key: key);
-
-    static const String _title = 'Flutter Code Sample';
+    final routes = <String, WidgetBuilder>{
+        LoginPage.tag: (context) => LoginPage(),
+        HomePage.tag: (context) => MyMainPage()
+        // HomePage.tag: (context) => HomePage()
+    };
 
     @override
     Widget build(BuildContext context) {
-        return const MaterialApp(title: _title, home: MyStatefulWidget());
+        return MaterialApp(
+            title: 'Kodeversitas',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(primarySwatch: Colors.lightBlue, fontFamily: 'Nunito'),
+            home: LoginPage(),
+            routes: routes,
+        );
     }
 }
 
-class MyStatefulWidget extends StatefulWidget {
-    const MyStatefulWidget({Key key}) : super(key: key);
+class MyMainPage extends StatefulWidget {
+    const MyMainPage({Key key}) : super(key: key);
 
     @override
-    _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+    _MyMainPageState createState() => _MyMainPageState();
 }
 
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+class _MyMainPageState extends State<MyMainPage> {
     int _selectedIndex = 0;
     static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
     static const List<Widget> _widgetOptions = <Widget> [
