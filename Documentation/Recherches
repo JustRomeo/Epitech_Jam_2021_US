@@ -1,0 +1,42 @@
+##########
+#   US   #
+##########
+
+
+Défis:
+- [X] 6 Colors                         | [V] 6 Colors
+- [X] NyanCats                         | [~] NyanCats
+- [X] Référence à des séries           | [~] Référence à des séries
+- [X] En parler sur les réseaux        | [V] En parler sur les réseaux
+- [X] Messages pour génération futures | [V] Messages pour génération futures
+
+Obligatoire:
+    - Multi-Langues
+
+Idées:
+    - Ecologie
+    - Ensemble
+    - Objectifs (Perso. & Communs)
+    - Checkpoints:
+        - Megots Ramassés
+        - Litres d'eau économisés
+        - Carbon NON rejetés
+    - Récompenses et/ou badges ?
+    - Niveau ?
+    - Classement ?
+
+Code:
+    - Repository (Github)
+    - API (Python ?)
+    - Mobile (Flutter ?)
+    - Website (ReactJs ?)
+
+{
+    "Name": "Roméo",
+    "Lvl": 7,
+    "mission": {
+        "megots": 93,
+        "WaterLiter" 30,
+        "CarbonEco" 47.3,
+    }
+}
