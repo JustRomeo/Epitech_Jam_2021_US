@@ -95,24 +95,10 @@ def create():
         return {"status": "Fail", "message": str(e)}
     return jsonn
 
-@APP.route('/getInfo', methods=['POST', 'OPTIONS'])
-@cross_origin()
-def getInfo():
-    try:
-        data = request.get_json()
-        token = data['token']
-        if not os.path.exists(root + "/" + token):
-            raise ValueError("Token Unknown")
-        getData(root + "/" + token)
-
-        jsonn = {"status": "success"}
-    except Exception as e:
-        return {"status": "Fail", "message": str(e)}
-    return jsonn
-
 @APP.route('/connect', methods=['POST', 'OPTIONS'])
 @cross_origin()
 def connect():
+    root : str = "Database/"
     try:
         data = request.get_json()
         username = data['username']
@@ -121,6 +107,7 @@ def connect():
         user = getFromDB(username, password)
         if user == None:
             raise ValueError("Unknown user.")
+        token = user['token']
         if not os.path.exists(root + "/" + token):
             raise ValueError("Token Unknown")
         jsonn = {"status": "success", "data": user}

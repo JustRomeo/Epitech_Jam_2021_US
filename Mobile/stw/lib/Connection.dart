@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:stw/Home.dart';
-import 'package:stw/Global.dart';
 import 'package:stw/Requests.dart';
+import 'package:stw/Global.dart';
 
 var message = " ";
 var globalContext;
@@ -31,6 +31,22 @@ loadUser(String username, String password) async {
         Navigator.of(globalContext).pushNamed(HomePage.tag);
     } else
         message = Global.user['message'];
+}
+loadAppInfos() async {
+    var data;
+    HttpClientResponse response;
+    HttpClient client = new HttpClient()..badCertificateCallback = ((X509Certificate cert, String host, int port) => true);
+    HttpClientRequest request = await client.postUrl(Uri.parse(Requests.appInfos));
+
+    request.headers.set('content-type', 'application/json');
+    request.add(utf8.encode(json.encode({"username": "username", "password": "password"})));
+
+    response = await request.close();
+    data = await response.transform(utf8.decoder).join();
+    print("Response: ${data}");
+    var temp = json.decode(data);
+    if (temp != null && temp['status'] == "success")
+        Global.appliinfos = temp;
 }
 createUser(String username, String password) async {
     var data;
@@ -63,6 +79,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     globalContext = context;
+    loadAppInfos();
     final logo = Hero(
         tag: 'hero',
         child: CircleAvatar(

@@ -37,9 +37,11 @@ class _MyMainPageState extends State<MyMainPage> {
     int _selectedIndex = 0;
     static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
     static const List<Widget> _widgetOptions = <Widget> [
-        Text('Index 0: Home', style: optionStyle),
+        Text('Index 1: Home', style: optionStyle),
+        Text('Index 2: Advices', style: optionStyle),
         Profil(),
         WorldPage(),
+        Text('Index 5: Shop', style: optionStyle),
     ];
 
     void _onItemTapped(int index) {
@@ -53,12 +55,14 @@ class _MyMainPageState extends State<MyMainPage> {
             body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
             bottomNavigationBar: BottomNavigationBar(
                 items: const <BottomNavigationBarItem>[
-                    BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-                    BottomNavigationBarItem(icon: Icon(Icons.person), label: 'My Profil'),
-                    BottomNavigationBarItem(icon: Icon(Icons.eco_outlined), label: 'The World'),
+                    BottomNavigationBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.home), label: 'Home'),
+                    BottomNavigationBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.help_outline_outlined), label: 'Advices'),
+                    BottomNavigationBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.person), label: 'My Profil'),
+                    BottomNavigationBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.eco_outlined), label: 'The World'),
+                    BottomNavigationBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.shopping_bag_outlined), label: 'Shop'),
                 ],
                 currentIndex: _selectedIndex,
-                selectedItemColor: Colors.amber[800],
+                selectedItemColor: Colors.white,
                 onTap: _onItemTapped,
             ),
         );

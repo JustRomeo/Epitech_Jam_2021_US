@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'package:stw/Global.dart';
+
 class WorldPage extends StatefulWidget {
     const WorldPage({Key key}) : super(key: key);
 
@@ -23,32 +25,74 @@ class _WorldPageState extends State<WorldPage> {
                   )
               ),
               child: Container(
+                  width: double.infinity,
+                  height: 450,
+                  child: Center(
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                              CircleAvatar(backgroundImage: NetworkImage("https://www.technocrazed.com/wp-content/uploads/2015/12/Earth-Wallpaper-115.jpg"), radius: 50),
+                              SizedBox(height: 10),
+                              Text("Statistiques Mondiale", style: TextStyle(fontSize: 22, color: Colors.white)),
+                              SizedBox(height: 10),
+                              Card(
+                                  margin: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                  clipBehavior: Clip.antiAlias,
+                                  color: Colors.white,
+                                  elevation: 5,
+                                  child: Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 22),
+                                      child: Row(
+                                          children: [
+                                              Expanded(
+                                                  child: Column(
+                                                      children: [
+                                                          Text("Accounts", style: TextStyle(color: Colors.redAccent, fontSize: 22, fontWeight: FontWeight.bold)),
+                                                          SizedBox(height: 5),
+                                                          Text((Global.appliinfos == null || Global.appliinfos['accounts'] == null ? "0" : Global.appliinfos['accounts'].toString()), style: TextStyle(fontSize: 20, color: Colors.pinkAccent))
+                                                      ]
+                                                  )
+                                              )
+                                          ]
+                                      )
+                                  )
+                              )
+                          ]
+                      )
+                  )
+              )
+          ), Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Colors.blue, Colors.greenAccent]
+                    )
+                ),
+              child: Container(
                 width: double.infinity,
-                height: 350,
+                height: 200,
                 child: Center(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CircleAvatar(backgroundImage: NetworkImage("https://www.technocrazed.com/wp-content/uploads/2015/12/Earth-Wallpaper-115.jpg"), radius: 50),
-                      SizedBox(height: 10),
-                      Text("Statistiques Mondiale", style: TextStyle(fontSize: 22, color: Colors.white)),
-                      SizedBox(height: 10),
                       Card(
-                        margin: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
-                        clipBehavior: Clip.antiAlias,
+                        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                         color: Colors.white,
                         elevation: 5,
-                        child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 22),
+                        child:
+                        Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 22),
                             child: Row(
                                 children: [
                                     Expanded(
                                         child: Column(
                                             children: [
-                                                Text("Posts", style: TextStyle(color: Colors.redAccent, fontSize: 22, fontWeight: FontWeight.bold)),
+                                                Text("Déchets", style: TextStyle(color: Colors.redAccent, fontSize: 22, fontWeight: FontWeight.bold)),
                                                 SizedBox(height: 5),
-                                                Text("1200", style: TextStyle(fontSize: 20, color: Colors.pinkAccent))
+                                                Text((Global.appliinfos == null || Global.appliinfos['dechets'] == null ? "0" : Global.appliinfos['dechets'].toString()), style: TextStyle(fontSize: 20, color: Colors.pinkAccent))
                                             ],
                                         ),
                                     ),
@@ -56,20 +100,20 @@ class _WorldPageState extends State<WorldPage> {
                                         child: Column(
                                             children: [
                                                 Text(
-                                                    "Followers",
+                                                    "Co2 (Kg)",
                                                     style: TextStyle(color: Colors.redAccent, fontSize: 22, fontWeight: FontWeight.bold),
                                                 ),
                                                 SizedBox(height: 5),
-                                                Text("21.2K", style: TextStyle(fontSize: 20, color: Colors.pinkAccent))
+                                                Text((Global.appliinfos == null || Global.appliinfos['CarbonEco'] == null ? "0" : Global.appliinfos['CarbonEco'].toString()), style: TextStyle(fontSize: 20, color: Colors.pinkAccent))
                                             ],
                                         ),
                                     ),
                                     Expanded(
                                         child: Column(
                                             children: [
-                                                Text("Follow", style: TextStyle(color: Colors.redAccent, fontSize: 22, fontWeight: FontWeight.bold)),
+                                                Text("Eau (L)", style: TextStyle(color: Colors.redAccent, fontSize: 22, fontWeight: FontWeight.bold)),
                                                 SizedBox(height: 5),
-                                                Text("1200", style: TextStyle(fontSize: 20, color: Colors.pinkAccent))
+                                                Text((Global.appliinfos == null || Global.appliinfos['WaterLiter'] == null ? "0" : Global.appliinfos['WaterLiter'].toString()), style: TextStyle(fontSize: 20, color: Colors.pinkAccent))
                                             ],
                                         ),
                                     ),
@@ -81,53 +125,6 @@ class _WorldPageState extends State<WorldPage> {
                   ),
                 ),
               )
-          ),
-          Container(
-              child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 30,horizontal: 16),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                          Text("Info:", style: TextStyle(color: Colors.redAccent, fontStyle: FontStyle.normal, fontSize: 28)),
-                          SizedBox(height: 10),
-                          Text(
-                              "#SaveTheWorld",
-                              style: TextStyle(
-                                  fontSize: 22,
-                                  fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.w300,
-                                  color: Colors.black,
-                                  letterSpacing: 2,
-                              ),
-                          ),
-                      ],
-                  ),
-              ),
-          ),
-          SizedBox(height: 20),
-          Container(
-              child: RaisedButton(
-                  onPressed: () {},
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80)),
-                  elevation: 0,
-                  padding: EdgeInsets.all(0),
-                  child: Ink(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.centerRight,
-                              end: Alignment.centerLeft,
-                              colors: [Colors.pink,Colors.pinkAccent]
-                          ),
-                          borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Container(
-                          constraints: BoxConstraints(maxWidth: 300, minHeight: 50),
-                          alignment: Alignment.center,
-                          child: Text("Ajout d'une donnée.", style: TextStyle(color: Colors.white, fontSize: 26, fontWeight:FontWeight.w300)),
-                      ),
-                  )
-              ),
           ),
         ],
       ),

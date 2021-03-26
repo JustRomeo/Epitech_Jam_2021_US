@@ -133,14 +133,14 @@ class _ProfilState extends State<Profil> {
                           gradient: LinearGradient(
                               begin: Alignment.centerRight,
                               end: Alignment.centerLeft,
-                              colors: [Colors.green,Colors.blue]
+                              colors: [Colors.pink,Colors.pinkAccent]
                           ),
                           borderRadius: BorderRadius.circular(30),
                       ),
                       child: Container(
                           constraints: BoxConstraints(maxWidth: 300, minHeight: 50),
                           alignment: Alignment.center,
-                          child: Text("Contact me", style: TextStyle(color: Colors.white, fontSize: 26, fontWeight:FontWeight.w300)),
+                          child: Text("Ajout d'une donnée.", style: TextStyle(color: Colors.white, fontSize: 26, fontWeight:FontWeight.w300)),
                       ),
                   )
               ),
