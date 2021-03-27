@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:convert';
 
+import 'package:stw/Advices.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -28,6 +29,7 @@ loadUser(String username, String password) async {
     print("Response: ${data}");
     var temp = json.decode(data);
     if (temp != null && temp['status'] == "success") {
+        reload();
         Global.user = temp['data'];
         if (Global.user['language'] == "Fr") {
             LangueText().inFrench();
@@ -70,9 +72,10 @@ createUser(String username, String password) async {
     data = await response.transform(utf8.decoder).join();
     print("Response: ${data}");
     var temp = json.decode(data);
-    if (temp != null && temp['status'] == "success")
+    if (temp != null && temp['status'] == "success") {
+        loadAppInfos();
         loadUser(username, password);
-    else
+    } else
         message = temp['message'];
 }
 

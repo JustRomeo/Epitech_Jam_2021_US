@@ -48,16 +48,15 @@ def countDataFromDB2(key : str, key2 : str):
 
 def getData(path : str):
     if not os.path.exists(path):
-        print(filepath + " do not exist.")
+        print(path + " do not exist.")
         return None
     else:
         try:
             with open(path, 'r') as json_file:
                 loaded = json.load(json_file)
-            print(filepath, "loaded\n", loaded)
             return loaded
-        except:
-            return None
+        except Exception as e:
+            raise e
     return None
 def saveinFile(filepath : str, data : dict):
     if filepath == None or data == None:

@@ -64,12 +64,12 @@ class _ProfilState extends State<Profil> {
                         Text((Global.user['name'] == null ? "Anonyme" : Global.user['name']), style: TextStyle(fontSize: 22, color: Colors.white)),
                         SizedBox(height: 10),
                         Card(
-                          margin: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                          margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                           clipBehavior: Clip.antiAlias,
                           color: Colors.white,
                           elevation: 5,
                           child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 22),
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 22),
                               child: Row(
                                   children: [
                                       Expanded(
@@ -111,13 +111,13 @@ class _ProfilState extends State<Profil> {
             SizedBox(height: 20),
             Column(
                 children: <Widget> [
-                    Text('90%'),
+                    Text(Global.user['percent'] == null ? "0%" : (Global.user['percent'] * 100).toString() + "%"),
                     SizedBox(width: 15),
                     Card(
                         child: LinearProgressIndicator(
                             backgroundColor: Colors.cyanAccent,
                             valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
-                            value: 0.9,
+                            value: Global.user['percent'] == null ? 0 : Global.user['percent'],
                         )
                     )
                 ],

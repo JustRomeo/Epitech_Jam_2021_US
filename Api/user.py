@@ -121,6 +121,9 @@ def connect():
         if user == None:
             raise ValueError("Unknown user.")
         token = user['token']
+        diviseur : int = user['lvl'] * 10
+        user['lvl'] = int(user['mission']['dechets'] / diviseur + user['mission']['CarbonEco'] / diviseur + user['mission']['WaterLiter'] / diviseur)
+        user['percent'] = float(user['mission']['dechets'] / diviseur + user['mission']['CarbonEco'] / diviseur + user['mission']['WaterLiter'] / diviseur) - user['lvl']
         jsonn = {"status": "success", "data": user}
     except Exception as e:
         return {"status": "Fail", "message": str(e)}

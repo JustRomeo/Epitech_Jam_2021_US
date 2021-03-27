@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
-
 import 'dart:io';
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-// import 'package:stw/Global.dart';
 import 'package:stw/Requests.dart';
 
 var publications = <Widget> [];
@@ -25,6 +23,8 @@ reload() async {
     if (temp != null && temp['status'] == "success") {
         print("LIST: ${temp['data']}");
         loadPublications(temp['data']);
+    } else {
+        print("FAIL CAUSE ${temp}");
     }
     print("Reload");
 }
@@ -52,13 +52,14 @@ getPublication(String Title, String Desc, String Link) {
     );
 }
 
-loadPublications(List<dynamic> liste) {
+loadPublications(var liste) {
     if (liste == null)
         return;
     publications = <Widget> [];
     publications.add(getPublication("ATTENTION AU COVID", "Continuons de rester attentif !!", "https://wrif.com/wp-content/uploads/sites/24/2020/03/stop-covid-19.jpg"));
     for (var i = 0; i < liste.length; i ++) {
-        publications.add(getPublication(liste[i]['title'], liste[i]['desc'], liste[i]['img']));
+        publications.add(getPublication(liste[i]['title'], liste[i]['Desc'], liste[i]['img']));
+        publications.add(SizedBox(height: 8));
     }
 }
 
@@ -72,20 +73,11 @@ class MyAdvices extends StatelessWidget {
             backgroundColor: Colors.green,
             body: Center(
                 child: RefreshIndicator(
-                    onRefresh: reload(),
+                    onRefresh: () {return Future.sync(() => reload());},
                     child: SingleChildScrollView(
                         child: Column(
                             mainAxisSize: MainAxisSize.min,
-                            children:
-                            // publications
-                            <Widget> [
-                                getPublication("Le Composte", "Le composte permet de produire du terreau à partir de déchet organiques.", "https://i0.wp.com/sivom-region-cluses.fr/wp-content/uploads/2017/06/composteur-credit-sivom.jpg?fit=1500%2C1125"),
-                                SizedBox(height: 8),
-                                getPublication("Le Savon Maison", "Le savon fait soi même c'est quand même vachement cool. Mais c'est pas une mince à faire.", 'https://static1.beaute.fr/articles/2/12/07/2/@/32812-le-retour-en-grace-du-savon-article_full-2.jpg'),
-                                SizedBox(height: 8),
-                                getPublication("Fermer le robinet quand on se brosse les dents !", "Cela permet l'economie de beaucoup d'eau, rendez vous compte qu'a raison de 1L par minute, et de 3 minute par lavement, vous consommez minimum 6L d'eau par jour.", "https://i.pinimg.com/originals/9e/dc/36/9edc36b72a7ead337b0af035acf7ea54.jpg"),
-                                SizedBox(height: 8)
-                            ]
+                            children: publications
                         )
                     )
                 )
