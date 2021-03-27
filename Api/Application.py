@@ -92,9 +92,6 @@ def getPublications():
     try:
         data = request.get_json()
         liste = getData("Database/Publications/Publications")
-        # if liste == None:
-        #     raise ValueError("Cannot get Publications liste.")
-        # print(publ)
         jsonn = {"status": "success", "data": publ}
     except Exception as e:
         return {"status": "Fail", "message": str(e)}

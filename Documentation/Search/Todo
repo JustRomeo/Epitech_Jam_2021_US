@@ -1,5 +1,4 @@
 - Project:
-    - Multilangues
     - NyanCat
 
 - Appli:
@@ -10,7 +9,6 @@
 
 - API:
     - Calcul du titre de la personne
-    - Calcul du niveau
 
 - Website:
     - Tout
