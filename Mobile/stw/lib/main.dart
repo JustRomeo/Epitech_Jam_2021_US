@@ -5,9 +5,13 @@ import 'package:stw/Advices.dart';
 import 'package:stw/Profile.dart';
 import 'package:stw/TheWorld.dart';
 import 'package:stw/Connection.dart';
+import 'package:stw/LangueText.dart';
 
 void main() => runApp(MyApp());
 
+// const var _home = LangueText.Menu_home.toString();
+
+// FlutterRestart.restartApp();
 class MyApp extends StatelessWidget {
     final routes = <String, WidgetBuilder>{
         LoginPage.tag: (context) => LoginPage(),
@@ -57,11 +61,11 @@ class _MyMainPageState extends State<MyMainPage> {
             body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
             bottomNavigationBar: BottomNavigationBar(
                 items: const <BottomNavigationBarItem>[
-                    BottomNavigationBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.home), label: 'Home'),
-                    BottomNavigationBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.help_outline_outlined), label: 'Advices'),
-                    BottomNavigationBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.person), label: 'My Profil'),
-                    BottomNavigationBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.eco_outlined), label: 'The World'),
-                    BottomNavigationBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.shopping_bag_outlined), label: 'Shop'),
+                    BottomNavigationBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.home), label: " "),
+                    BottomNavigationBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.help_outline_outlined), label: ' '),
+                    BottomNavigationBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.person), label: ' '),
+                    BottomNavigationBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.eco_outlined), label: ' '),
+                    BottomNavigationBarItem(backgroundColor: Colors.blue, icon: Icon(Icons.shopping_bag_outlined), label: ' '),
                 ],
                 currentIndex: _selectedIndex,
                 selectedItemColor: Colors.white,

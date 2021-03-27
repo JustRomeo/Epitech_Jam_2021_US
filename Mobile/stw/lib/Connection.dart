@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:stw/Home.dart';
-import 'package:stw/Requests.dart';
 import 'package:stw/Global.dart';
+import 'package:stw/Requests.dart';
+import 'package:stw/LangueText.dart';
 
 var message = " ";
 var globalContext;
@@ -28,9 +29,17 @@ loadUser(String username, String password) async {
     var temp = json.decode(data);
     if (temp != null && temp['status'] == "success") {
         Global.user = temp['data'];
+        if (Global.user['language'] == "Fr") {
+            LangueText().inFrench();
+        } else if (Global.user['language'] == "Esp") {
+            LangueText().inEspagnol();
+        } else {
+            LangueText().inEnglish();
+        }
+
         Navigator.of(globalContext).pushNamed(HomePage.tag);
     } else
-        message = Global.user['message'];
+        message = temp['message'];
 }
 loadAppInfos() async {
     var data;

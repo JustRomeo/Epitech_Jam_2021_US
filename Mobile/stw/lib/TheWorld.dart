@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:stw/Global.dart';
+import 'package:stw/LangueText.dart';
+
 
 class WorldPage extends StatefulWidget {
     const WorldPage({Key key}) : super(key: key);
@@ -34,7 +36,7 @@ class _WorldPageState extends State<WorldPage> {
                                     children: [
                                         CircleAvatar(backgroundImage: NetworkImage("https://www.technocrazed.com/wp-content/uploads/2015/12/Earth-Wallpaper-115.jpg"), radius: 50),
                                         SizedBox(height: 10),
-                                        Text("Statistiques Mondiale", style: TextStyle(fontSize: 22, color: Colors.white)),
+                                        Text(LangueText.world_stats, style: TextStyle(fontSize: 22, color: Colors.white)),
                                         SizedBox(height: 10),
                                         Card(
                                             margin: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
@@ -48,7 +50,7 @@ class _WorldPageState extends State<WorldPage> {
                                                         Expanded(
                                                             child: Column(
                                                                 children: [
-                                                                    Text("Accounts", style: TextStyle(color: Colors.redAccent, fontSize: 22, fontWeight: FontWeight.bold)),
+                                                                    Text(LangueText.world_accounts, style: TextStyle(color: Colors.redAccent, fontSize: 22, fontWeight: FontWeight.bold)),
                                                                     SizedBox(height: 5),
                                                                     Text((Global.appliinfos == null || Global.appliinfos['accounts'] == null ? "0" : Global.appliinfos['accounts'].toString()), style: TextStyle(fontSize: 20, color: Colors.pinkAccent))
                                                                 ]
@@ -91,7 +93,7 @@ class _WorldPageState extends State<WorldPage> {
                                                         Expanded(
                                                             child: Column(
                                                                 children: [
-                                                                    Text("Déchets", style: TextStyle(color: Colors.redAccent, fontSize: 22, fontWeight: FontWeight.bold)),
+                                                                    Text(LangueText.mission_dechet, style: TextStyle(color: Colors.redAccent, fontSize: 22, fontWeight: FontWeight.bold)),
                                                                     SizedBox(height: 5),
                                                                     Text((Global.appliinfos == null || Global.appliinfos['dechets'] == null ? "0" : Global.appliinfos['dechets'].toString()), style: TextStyle(fontSize: 20, color: Colors.pinkAccent))
                                                                 ],
@@ -100,7 +102,7 @@ class _WorldPageState extends State<WorldPage> {
                                                         Expanded(
                                                             child: Column(
                                                                 children: [
-                                                                    Text("Co2 (Kg)", style: TextStyle(color: Colors.redAccent, fontSize: 22, fontWeight: FontWeight.bold)),
+                                                                    Text(LangueText.mission_carbone, style: TextStyle(color: Colors.redAccent, fontSize: 22, fontWeight: FontWeight.bold)),
                                                                     SizedBox(height: 5),
                                                                     Text((Global.appliinfos == null || Global.appliinfos['CarbonEco'] == null ? "0" : Global.appliinfos['CarbonEco'].toString()), style: TextStyle(fontSize: 20, color: Colors.pinkAccent))
                                                                 ],
@@ -109,7 +111,7 @@ class _WorldPageState extends State<WorldPage> {
                                                         Expanded(
                                                             child: Column(
                                                                 children: [
-                                                                    Text("Eau (L)", style: TextStyle(color: Colors.redAccent, fontSize: 22, fontWeight: FontWeight.bold)),
+                                                                    Text(LangueText.mission_waterliter, style: TextStyle(color: Colors.redAccent, fontSize: 22, fontWeight: FontWeight.bold)),
                                                                     SizedBox(height: 5),
                                                                     Text((Global.appliinfos == null || Global.appliinfos['WaterLiter'] == null ? "0" : Global.appliinfos['WaterLiter'].toString()), style: TextStyle(fontSize: 20, color: Colors.pinkAccent))
                                                                 ],

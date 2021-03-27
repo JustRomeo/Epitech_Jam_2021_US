@@ -42,7 +42,7 @@ def howManyinDb():
     liste.sort()
     return len(liste)
 def getFromDB(username : str, password : str):
-    liste = glob.glob("Database/*")
+    liste = glob.glob("Database/people/*")
     liste.sort()
     for _file in liste:
         try:
@@ -51,6 +51,16 @@ def getFromDB(username : str, password : str):
         except Exception as e:
             print("Error in loading:", e)
     return None
+def isInDb(username : str):
+    liste = glob.glob("Database/people/*")
+    liste.sort()
+    for _file in liste:
+        try:
+            if getData(_file)['username'] == username:
+                return True
+        except Exception as e:
+            print("Error in loading:", e)
+    return False
 
 def getData(path : str):
     if not os.path.exists(path):
@@ -72,18 +82,21 @@ def saveinFile(filepath : str, data : dict):
 @APP.route('/create', methods=['POST', 'OPTIONS'])
 @cross_origin()
 def create():
-    root : str = "Database/"
+    root : str = "Database/people"
     try:
         data = request.get_json()
         username = data['username']
         password = data['password']
 
+        if isInDb(username):
+            raise ValueError("Username Already Taken.")
         token : str = generateToken(150)
         while os.path.exists(root + "/" + token):
             token = generateToken(150)
         toSave = {
             "lvl": 1,
             "token": token,
+            "language": "En",
             "username": username,
             "password": password,
             "mission": {"dechets": 0, "CarbonEco": 0, "WaterLiter": 0},
@@ -98,7 +111,7 @@ def create():
 @APP.route('/connect', methods=['POST', 'OPTIONS'])
 @cross_origin()
 def connect():
-    root : str = "Database/"
+    root : str = "Database/people"
     try:
         data = request.get_json()
         username = data['username']
@@ -108,8 +121,28 @@ def connect():
         if user == None:
             raise ValueError("Unknown user.")
         token = user['token']
-        if not os.path.exists(root + "/" + token):
+        jsonn = {"status": "success", "data": user}
+    except Exception as e:
+        return {"status": "Fail", "message": str(e)}
+    return jsonn
+
+@APP.route('/setLanguage', methods=['POST', 'OPTIONS'])
+@cross_origin()
+def setLanguage():
+    root : str = "Database/people"
+    try:
+        data = request.get_json()
+        token = data['token']
+        language = data['language']
+        filepath : str = root + "/" + token
+
+        if not os.path.exists(filepath):
             raise ValueError("Token Unknown")
+        user = getData(filepath)
+        if user == None:
+            raise ValueError("Error when loading user :/")
+        user['language'] = language
+        saveinFile(filepath, user)
         jsonn = {"status": "success", "data": user}
     except Exception as e:
         return {"status": "Fail", "message": str(e)}
