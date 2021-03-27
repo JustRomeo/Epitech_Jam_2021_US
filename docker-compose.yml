@@ -1,0 +1,21 @@
+version: '3.5'
+services:
+  api_service:
+    build:
+      context: ./Api
+    ports:
+      - 3000:3000
+    environment:
+      - PORT=3000
+    volumes:
+      - ./Api:/api
+    networks:
+      - main
+    restart: always
+
+  mobile_service:
+    build:
+      context: './Mobile/stw/'
+
+networks:
+  main:
