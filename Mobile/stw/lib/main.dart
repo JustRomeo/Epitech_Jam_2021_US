@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
             title: 'Accueil',
             debugShowCheckedModeBanner: false,
-            theme: ThemeData(primarySwatch: Colors.lightBlue), //, fontFamily: 'Nunito'),
+            theme: ThemeData(primarySwatch: Colors.lightBlue),
             home: LoginPage(),
             routes: routes,
         );

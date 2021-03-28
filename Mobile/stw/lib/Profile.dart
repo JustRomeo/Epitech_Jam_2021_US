@@ -57,12 +57,18 @@ class _ProfilState extends State<Profil> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CircleAvatar(
-                            backgroundImage: NetworkImage("https://i.vimeocdn.com/portrait/44771460_640x640"),
-                            radius: 50,
-                        ),
+                        CircleAvatar(backgroundImage: NetworkImage("https://i.vimeocdn.com/portrait/44771460_640x640"), radius: 50),
                         SizedBox(height: 10),
-                        Text((Global.user['name'] == null ? "Anonyme" : Global.user['name']), style: TextStyle(fontSize: 22, color: Colors.white)),
+                        (Global.user['certified'] == 1 ?
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                    Text((Global.user['name'] == null ? "Anonyme" : Global.user['name']), style: TextStyle(fontSize: 22, color: Colors.white)),
+                                    SizedBox(width: 10),
+                                    Icon(Icons.check),
+                                ]
+                            ) : Text((Global.user['name'] == null ? "Anonyme" : Global.user['name']), style: TextStyle(fontSize: 22, color: Colors.white))
+                        ),
                         SizedBox(height: 10),
                         Card(
                           margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),

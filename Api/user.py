@@ -126,7 +126,7 @@ def connect():
         user['lvl'] = 1
         user['percent'] = 0
         user['lvl'] += int((int(user['mission']['dechets']) + int(user['mission']['CarbonEco']) + int(user['mission']['WaterLiter'])) / 30)
-        user['percent'] += float((int(user['mission']['dechets']) + int(user['mission']['CarbonEco']) + int(user['mission']['WaterLiter'])) % 30)
+        user['percent'] += float((int(user['mission']['dechets']) + int(user['mission']['CarbonEco']) + int(user['mission']['WaterLiter'])) % 30) / 30
         jsonn = {"status": "success", "data": user}
     except Exception as e:
         return {"status": "Fail", "message": str(e)}

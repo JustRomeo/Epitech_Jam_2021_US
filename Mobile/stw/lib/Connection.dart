@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:stw/Home.dart';
+import 'package:stw/Shop.dart';
 import 'package:stw/Global.dart';
 import 'package:stw/Requests.dart';
 import 'package:stw/LangueText.dart';
@@ -30,6 +31,7 @@ loadUser(String username, String password) async {
     var temp = json.decode(data);
     if (temp != null && temp['status'] == "success") {
         reload();
+        reloadMyShop();
         Global.user = temp['data'];
         if (Global.user['language'] == "Fr") {
             LangueText().inFrench();

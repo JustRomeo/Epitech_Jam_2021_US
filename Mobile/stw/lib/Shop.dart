@@ -29,7 +29,7 @@ reloadMyShop() async {
     print("Reload");
 }
 
-getArticle(String Title, String Desc, String Link) {
+getArticle(String Title, String Desc, String Link, double Price) {
     if (Title == null)
         Title = " ";
     if (Desc == null)
@@ -51,16 +51,44 @@ getArticle(String Title, String Desc, String Link) {
                         Expanded(
                             child: Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 22),
-                                child: Column(
-                                    children: [
-                                        Text(Desc, maxLines: 10, style: TextStyle(fontSize: 14, color: Colors.black))
-                                    ],
-                                ),
+                                child: Column(children: [Text(Desc, maxLines: 10, style: TextStyle(fontSize: 14, color: Colors.black))]),
                             ),
                         )
                     ],
                 ),
                 SizedBox(height: 8),
+                Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 22),
+                    child: Row(
+                        children: <Widget> [
+                            Expanded(
+                                child: Column(
+                                    children: [
+                                        Container(
+                                            child: RaisedButton(
+                                                onPressed: () {}, //Navigator.push(context, MaterialPageRoute(builder: (context) => FormValueAdder()));},
+                                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80)),
+                                                elevation: 0,
+                                                padding: EdgeInsets.all(0),
+                                                child: Ink(
+                                                    decoration: BoxDecoration(
+                                                        gradient: LinearGradient(begin: Alignment.centerRight, end: Alignment.centerLeft, colors: [Colors.pink,Colors.pinkAccent]),
+                                                        borderRadius: BorderRadius.circular(30),
+                                                    ),
+                                                    child: Container(
+                                                        constraints: BoxConstraints(maxWidth: 250, minHeight: 45),
+                                                        alignment: Alignment.center,
+                                                        child: Text(Price.toString() + "€", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight:FontWeight.w300)),
+                                                    ),
+                                                )
+                                            ),
+                                        ),
+                                    ],
+                                ),
+                            )
+                        ]
+                    )
+                )
             ]
         )
     );
@@ -70,17 +98,17 @@ loadArticles(var liste) {
     if (liste == null)
         return;
     shopList = <Widget> [];
-    // shopList.add(getArticle("ATTENTION AU COVID", "Continuons de rester attentif !!", "https://wrif.com/wp-content/uploads/sites/24/2020/03/stop-covid-19.jpg"));
-    // shopList.add(SizedBox(height: 8));
     for (var i = 0; i < liste.length; i ++) {
         String mylink = "";
         if (liste[i]['img'] == "/image/get?type=1")
             mylink = "https://www.systemed.fr/images/conseils/huit-recuperateurs-eau-pluie-300-a-550-litres.jpg";
         else if (liste[i]['img'] == "/image/get?type=2")
             mylink = "https://cdn.habitat.fr/thumbnails/product/770/770111/box/1200/1200/80/poubelle-ronde-3l-1_770111.jpg";
+        else if (liste[i]['img'] == "/image/get?type=3")
+            mylink = "https://www.maisoncreative.com/sites/art-de-vivre/files/mc-creer-un-composteur.jpg";
         else
             mylink = Requests.host + liste[i]['img'];
-        shopList.add(getArticle(liste[i]['title'], liste[i]['Desc'], mylink));
+        shopList.add(getArticle(liste[i]['title'], liste[i]['Desc'], mylink, liste[i]['price']));
         shopList.add(SizedBox(height: 8));
     }
 }
@@ -96,12 +124,7 @@ class MyShop extends StatelessWidget {
             body: Center(
                 child: RefreshIndicator(
                     onRefresh: () {return Future.sync(() => reloadMyShop());},
-                    child: SingleChildScrollView(
-                        child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: shopList
-                        )
-                    )
+                    child: SingleChildScrollView(child: Column(mainAxisSize: MainAxisSize.min, children: shopList))
                 )
             )
         );
