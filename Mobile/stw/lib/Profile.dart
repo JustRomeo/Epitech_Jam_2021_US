@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
+import 'package:stw/FormAddValue.dart';
 
 import 'package:stw/Global.dart';
 import 'package:stw/LangueText.dart';
@@ -111,7 +112,7 @@ class _ProfilState extends State<Profil> {
             SizedBox(height: 20),
             Column(
                 children: <Widget> [
-                    Text(Global.user['percent'] == null ? "0%" : (Global.user['percent'] * 100).toString() + "%"),
+                    Text(Global.user['lvl'] == null ? "Level: 0" : "Level: " + Global.user['lvl'].toString(), style: TextStyle(fontSize: 25, color: Colors.pinkAccent)),
                     SizedBox(width: 15),
                     Card(
                         child: LinearProgressIndicator(
@@ -119,7 +120,7 @@ class _ProfilState extends State<Profil> {
                             valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
                             value: Global.user['percent'] == null ? 0 : Global.user['percent'],
                         )
-                    )
+                    ),
                 ],
             ),
             Container(
@@ -146,7 +147,7 @@ class _ProfilState extends State<Profil> {
             SizedBox(height: 20),
             Container(
                 child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => FormValueAdder()));},
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80)),
                     elevation: 0,
                     padding: EdgeInsets.all(0),

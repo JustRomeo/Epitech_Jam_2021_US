@@ -14,6 +14,9 @@ class LangueText {
 
     static String profil_data = "Add a value";
 
+    static String next = "Next";
+    static String discour = "Bonjour et Bienvenue sur l'application #SaveTheWorld ! Vous voulez sauver le monde mais svous pensez que vous n'aurez aucun impact ?? Ne vous inquietez pas, vous n'êtes pas seul !!";
+
     inFrench() {
         Menu_home = "Menu";
         Menu_shop = "Magasin";
@@ -30,6 +33,8 @@ class LangueText {
 
         profil_data = "Ajouter une donnée";
 
+        next = "Suivant";
+        discour = "Bonjour et Bienvenue sur l'application #SaveTheWorld ! Vous voulez sauver le monde mais svous pensez que vous n'aurez aucun impact ?? Ne vous inquietez pas, vous n'êtes pas seul !!";
         print("Switch to french");
     }
     inEnglish() {
@@ -47,6 +52,9 @@ class LangueText {
         mission_waterliter = "Water (L)";
 
         profil_data = "Add a value";
+
+        next = "Next";
+        discour = "Hello and welcome to the #SaveTheWorld app! Do you want to save the world but do you think you will have no impact ?? Don't worry, you are not alone !!";
         print("Switch to english");
     }
     inEspagnol() {
@@ -64,6 +72,9 @@ class LangueText {
         mission_waterliter = "Agua (L)";
 
         profil_data = "Agregar datos";
+
+        next = "Seguir";
+        discour = "¡Hola y bienvenido a la aplicación #SaveTheWorld! ¿Quieres salvar el mundo pero crees que no tendrás ningún impacto? ¡No te preocupes, no estás solo!";
         print("Switch to espagnol");
     }
 }

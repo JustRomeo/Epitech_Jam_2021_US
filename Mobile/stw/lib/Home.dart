@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
+import 'package:stw/main.dart';
 import 'package:stw/Global.dart';
+import 'package:stw/LangueText.dart';
 
 class HomePage extends StatelessWidget {
   static String tag = 'home-page';
 
   @override
   Widget build(BuildContext context) {
-    final alucard = Hero(
-        tag: 'hero',
+    final MyIcon = Hero(
+        tag: 'PP',
         child: Padding(
             padding: EdgeInsets.all(16),
             child: CircleAvatar(
@@ -26,22 +28,44 @@ class HomePage extends StatelessWidget {
 
     final lorem = Padding(
         padding: EdgeInsets.all(8),
-        child: Text(
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit condimentum mauris id tempor. Praesent eu commodo lacus. Praesent eget mi sed libero eleifend tempor. Sed at fringilla ipsum. Duis malesuada feugiat urna vitae convallis. Aliquam eu libero arcu.',
-            style: TextStyle(fontSize: 16, color: Colors.white),
-        ),
+        child: Text(LangueText.discour, style: TextStyle(fontSize: 16, color: Colors.white)),
     );
 
     final body = Container(
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.all(28),
-        decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-                Colors.blue,
-                Colors.lightBlueAccent,
-            ]),
+        decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.blue, Colors.lightBlueAccent]),),
+        child: Column(
+            children: <Widget> [
+                MyIcon,
+                welcome,
+                lorem,
+                SizedBox(height: 20),
+                Container(
+                    child: RaisedButton(
+                        onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => MyMainPage()));},
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80)),
+                        elevation: 0,
+                        padding: EdgeInsets.all(0),
+                        child: Ink(
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                    begin: Alignment.centerRight,
+                                    end: Alignment.centerLeft,
+                                    colors: [Colors.pink,Colors.pinkAccent]
+                                ),
+                                borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Container(
+                                constraints: BoxConstraints(maxWidth: 300, minHeight: 50),
+                                alignment: Alignment.center,
+                                child: Text(LangueText.next, style: TextStyle(color: Colors.white, fontSize: 26, fontWeight:FontWeight.w300)),
+                            ),
+                        )
+                    ),
+                ),
+            ]
         ),
-        child: Column(children: <Widget>[alucard, welcome, lorem]),
     );
 
     return Scaffold(body: body);

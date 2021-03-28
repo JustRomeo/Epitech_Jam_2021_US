@@ -9,6 +9,7 @@ class Requests {
     // Request
     static String create = host + user + "/create";
     static String connect = host + user + "/connect";
+    static String addValue = host + user + "/addValue";
     static String appInfos = host + appli + "/getInfos";
     static String setLanguage = host + user + "/setLanguage";
     static String getPublications = host + appli + "/getPublications";

@@ -45,7 +45,22 @@ getPublication(String Title, String Desc, String Link) {
                 SizedBox(height: 8),
                 Image(image: NetworkImage(Link)),
                 SizedBox(height: 8),
-                Text(Desc, maxLines: 10, textDirection: TextDirection.ltr, style: TextStyle(fontSize: 14, color: Colors.black)),
+                Row(
+                    children: <Widget> [
+                        Expanded(
+                            child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 22),
+                                child: Column(
+                                    children: [
+                                        // Text(Desc, style: TextStyle(color: Colors.redAccent, fontSize: 22, fontWeight: FontWeight.bold)),
+                                        Text(Desc, maxLines: 10, style: TextStyle(fontSize: 14, color: Colors.black))
+                                    ],
+                                ),
+                            ),
+                        )
+                        // SizedBox(width: 15),
+                    ],
+                ),
                 SizedBox(height: 8),
             ]
         )
@@ -57,6 +72,7 @@ loadPublications(var liste) {
         return;
     publications = <Widget> [];
     publications.add(getPublication("ATTENTION AU COVID", "Continuons de rester attentif !!", "https://wrif.com/wp-content/uploads/sites/24/2020/03/stop-covid-19.jpg"));
+    publications.add(SizedBox(height: 8));
     for (var i = 0; i < liste.length; i ++) {
         publications.add(getPublication(liste[i]['title'], liste[i]['Desc'], liste[i]['img']));
         publications.add(SizedBox(height: 8));

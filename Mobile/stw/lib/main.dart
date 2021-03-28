@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:stw/Home.dart';
+import 'package:stw/Global.dart';
 import 'package:stw/Advices.dart';
 import 'package:stw/Profile.dart';
 import 'package:stw/TheWorld.dart';
 import 'package:stw/Connection.dart';
-import 'package:stw/LangueText.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,16 +15,15 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
     final routes = <String, WidgetBuilder>{
         LoginPage.tag: (context) => LoginPage(),
-        HomePage.tag: (context) => MyMainPage()
-        // HomePage.tag: (context) => HomePage()
+        HomePage.tag: (context) => (Global.isNew ? HomePage() : MyMainPage())
     };
 
     @override
     Widget build(BuildContext context) {
         return MaterialApp(
-            title: 'Kodeversitas',
+            title: 'Accueil',
             debugShowCheckedModeBanner: false,
-            theme: ThemeData(primarySwatch: Colors.lightBlue, fontFamily: 'Nunito'),
+            theme: ThemeData(primarySwatch: Colors.lightBlue), //, fontFamily: 'Nunito'),
             home: LoginPage(),
             routes: routes,
         );

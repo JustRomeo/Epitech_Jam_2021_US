@@ -73,6 +73,7 @@ createUser(String username, String password) async {
     print("Response: ${data}");
     var temp = json.decode(data);
     if (temp != null && temp['status'] == "success") {
+        Global.isNew = true;
         loadAppInfos();
         loadUser(username, password);
     } else

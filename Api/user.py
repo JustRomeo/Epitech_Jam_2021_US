@@ -95,6 +95,7 @@ def create():
             token = generateToken(150)
         toSave = {
             "lvl": 1,
+            "percent": 0,
             "token": token,
             "language": "En",
             "username": username,
@@ -121,9 +122,10 @@ def connect():
         if user == None:
             raise ValueError("Unknown user.")
         token = user['token']
-        diviseur : int = user['lvl'] * 10
-        user['lvl'] = int(user['mission']['dechets'] / diviseur + user['mission']['CarbonEco'] / diviseur + user['mission']['WaterLiter'] / diviseur)
-        user['percent'] = float(user['mission']['dechets'] / diviseur + user['mission']['CarbonEco'] / diviseur + user['mission']['WaterLiter'] / diviseur) - user['lvl']
+        user['lvl'] = 0
+        user['percent'] = 0
+        user['lvl'] += int((int(user['mission']['dechets']) + int(user['mission']['CarbonEco']) + int(user['mission']['WaterLiter'])) / 30)
+        user['percent'] += (int(user['mission']['dechets']) + int(user['mission']['CarbonEco']) + int(user['mission']['WaterLiter'])) % 30
         jsonn = {"status": "success", "data": user}
     except Exception as e:
         return {"status": "Fail", "message": str(e)}
@@ -145,6 +147,39 @@ def setLanguage():
         if user == None:
             raise ValueError("Error when loading user :/")
         user['language'] = language
+        saveinFile(filepath, user)
+        jsonn = {"status": "success", "data": user}
+    except Exception as e:
+        return {"status": "Fail", "message": str(e)}
+    return jsonn
+
+@APP.route('/addValue', methods=['POST', 'OPTIONS'])
+@cross_origin()
+def addValue():
+    root : str = "Database/people"
+    try:
+        data = request.get_json()
+        token = data['token']
+        Co2 = float(data['co2'])
+        Water = float(data['water'])
+        Garbage = float(data['dechet'])
+        filepath : str = root + "/" + token
+
+        if not os.path.exists(filepath):
+            raise ValueError("Token Unknown")
+        user = getData(filepath)
+        if user == None:
+            raise ValueError("Error when loading user :/")
+
+        user["mission"]["CarbonEco"] += Co2
+        user["mission"]["dechets"] += Garbage
+        user["mission"]["WaterLiter"] += Water
+        user['lvl'] = 0
+        user['lvl'] += int(user['mission']['dechets'] / 30)
+        user['lvl'] += int(user['mission']['CarbonEco'] / 30)
+        user['lvl'] += int(user['mission']['WaterLiter'] / 30)
+        user['percent'] += (int(user['mission']['dechets'] % 30) + int(user['mission']['CarbonEco'] % 30) + int(user['mission']['WaterLiter'] % 30)) / 3
+
         saveinFile(filepath, user)
         jsonn = {"status": "success", "data": user}
     except Exception as e:

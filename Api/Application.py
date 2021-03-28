@@ -38,10 +38,10 @@ def countDataFromDB2(key : str, key2 : str):
     liste = glob.glob("Database/people/*")
     liste.sort()
 
-    value : float = 0
+    value : int = 0
     for _file in liste:
         try:
-            value += getData(_file)[key][key2]
+            value += int(getData(_file)[key][key2])
         except Exception as e:
             print("Error in loading:", e)
     return value
@@ -71,9 +71,9 @@ def getInfo():
         jsonn = {
             "status": "success",
             "accounts": howManyinDb(),
-            "dechets": countDataFromDB2("mission", "dechets"),
-            "CarbonEco": countDataFromDB2("mission", "CarbonEco"),
-            "WaterLiter": countDataFromDB2("mission", "WaterLiter"),
+            "dechets": int(countDataFromDB2("mission", "dechets")),
+            "CarbonEco": int(countDataFromDB2("mission", "CarbonEco")),
+            "WaterLiter": int(countDataFromDB2("mission", "WaterLiter")),
         }
     except Exception as e:
         return {"status": "Fail", "message": str(e)}
