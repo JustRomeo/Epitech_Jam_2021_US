@@ -52,13 +52,11 @@ getPublication(String Title, String Desc, String Link) {
                                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 22),
                                 child: Column(
                                     children: [
-                                        // Text(Desc, style: TextStyle(color: Colors.redAccent, fontSize: 22, fontWeight: FontWeight.bold)),
                                         Text(Desc, maxLines: 10, style: TextStyle(fontSize: 14, color: Colors.black))
                                     ],
                                 ),
                             ),
                         )
-                        // SizedBox(width: 15),
                     ],
                 ),
                 SizedBox(height: 8),

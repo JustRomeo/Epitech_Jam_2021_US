@@ -4,6 +4,7 @@ import 'package:stw/Home.dart';
 import 'package:stw/Global.dart';
 import 'package:stw/Advices.dart';
 import 'package:stw/Profile.dart';
+import 'package:stw/Shop.dart';
 import 'package:stw/TheWorld.dart';
 import 'package:stw/Connection.dart';
 
@@ -45,7 +46,8 @@ class _MyMainPageState extends State<MyMainPage> {
         MyAdvices(),
         Profil(),
         WorldPage(),
-        Text('Index 5: Shop', style: optionStyle),
+        // Text('Index 5: Shop', style: optionStyle),
+        MyShop()
     ];
 
     void _onItemTapped(int index) {

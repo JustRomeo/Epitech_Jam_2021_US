@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
             child: CircleAvatar(
                 radius: 72,
                 backgroundColor: Colors.transparent,
-                backgroundImage: AssetImage('assets/téléchargement.jpeg'),
+                backgroundImage: AssetImage('assets/eco.jpg'),
             ),
         ),
     );
@@ -37,10 +37,12 @@ class HomePage extends StatelessWidget {
         decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.blue, Colors.lightBlueAccent]),),
         child: Column(
             children: <Widget> [
+                SizedBox(height: 50),
                 MyIcon,
+                SizedBox(height: 20),
                 welcome,
                 lorem,
-                SizedBox(height: 20),
+                SizedBox(height: 60),
                 Container(
                     child: RaisedButton(
                         onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => MyMainPage()));},

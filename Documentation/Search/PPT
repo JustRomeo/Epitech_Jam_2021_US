@@ -4,10 +4,11 @@ Sommaire:
     - II.  Mon Analyse
     - III. Mon Projet (User)
     - IV.  Mon Projet (Tech)
-    - V.   Cimer le sang
+    - V.   Ce que j'ai Appris
+    - VI.  Cimer le sang
 
 I. Presentation:
-    -> Jam: 55h18min pour rendre un projet
+    -> Jam: 54h18min pour rendre un projet (-1h changement d'heure)
     -> Theme devoilé à la dernière minute
         -> Parfois comme cette fois ci une contrainte: MultiLangue (au moins 2)
         -> 6 Objectifs 'Bonus'
@@ -27,4 +28,9 @@ IV. Tech
     -> Appli Mobile
     -> Back Api en Python
 
-V.  Cimer le sang
+V. Ce que j'ai appris
+    -> Flask send image
+    -> Scrollable List
+    -> Gestion des tokens user
+
+VI. Cimer le sang

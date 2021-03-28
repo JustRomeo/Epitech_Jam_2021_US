@@ -15,12 +15,14 @@ from flask_cors import cross_origin
 port : int = 3000
 
 from user import APP as user
+from Image import APP as image
 from Application import APP as appli
 
 APP = Flask(__name__)
 CORS(APP)
 
 APP.register_blueprint(user)
+APP.register_blueprint(image)
 APP.register_blueprint(appli)
 
 @APP.route('/ping', methods=['GET'])

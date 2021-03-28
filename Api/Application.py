@@ -17,6 +17,7 @@ from flask_cors import CORS
 from flask import make_response
 from flask_cors import cross_origin
 
+host : str = "https://localhost:3000"
 APP = Blueprint('application', __name__, url_prefix='/application')
 
 def howManyinDb():
@@ -85,6 +86,12 @@ publ = [
     {"title": "Fermer le robinet quand on se brosse les dents !", "Desc": "Cela permet l'economie de beaucoup d'eau, rendez vous compte qu'a raison de 1L par minute, et de 3 minute par lavement, vous consommez minimum 6L d'eau par jour.", "img": "https://i.pinimg.com/originals/9e/dc/36/9edc36b72a7ead337b0af035acf7ea54.jpg"}
 ]
 
+produits = [
+    {"title": "Le Composte", "Desc": "Le composte permet de produire du terreau à partir de déchet organiques.", "img": "https://i0.wp.com/sivom-region-cluses.fr/wp-content/uploads/2017/06/composteur-credit-sivom.jpg?fit=1500%2C1125"},
+    {"title": "Le Savon Maison", "Desc": "Le savon fait soi même c'est quand même vachement cool. Mais c'est pas une mince à faire.", "img": 'https://static1.beaute.fr/articles/2/12/07/2/@/32812-le-retour-en-grace-du-savon-article_full-2.jpg'},
+    {"title": "Fermer le robinet quand on se brosse les dents !", "Desc": "Cela permet l'economie de beaucoup d'eau, rendez vous compte qu'a raison de 1L par minute, et de 3 minute par lavement, vous consommez minimum 6L d'eau par jour.", "img": "https://i.pinimg.com/originals/9e/dc/36/9edc36b72a7ead337b0af035acf7ea54.jpg"}
+]
+
 @APP.route('/getPublications', methods=['POST', 'OPTIONS'])
 @cross_origin()
 def getPublications():
@@ -93,6 +100,20 @@ def getPublications():
         data = request.get_json()
         liste = getData("Database/Publications/Publications")
         jsonn = {"status": "success", "data": publ}
+    except Exception as e:
+        return {"status": "Fail", "message": str(e)}
+    return jsonn
+
+@APP.route('/getShop', methods=['POST', 'OPTIONS'])
+@cross_origin()
+def getShop():
+    root : str = "Database/Publications/"
+    try:
+        data = request.get_json()
+        liste = getData("Database/Publications/Shop")
+        for elem in liste:
+            elem['img'] = "/image/get?type=" + str(elem['img'])
+        jsonn = {"status": "success", "data": liste}
     except Exception as e:
         return {"status": "Fail", "message": str(e)}
     return jsonn

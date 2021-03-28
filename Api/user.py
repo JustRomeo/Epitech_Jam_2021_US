@@ -95,9 +95,10 @@ def create():
             token = generateToken(150)
         toSave = {
             "lvl": 1,
-            "percent": 0,
+            "percent": 0.0,
             "token": token,
             "language": "En",
+            "certified": False,
             "username": username,
             "password": password,
             "mission": {"dechets": 0, "CarbonEco": 0, "WaterLiter": 0},
@@ -122,10 +123,10 @@ def connect():
         if user == None:
             raise ValueError("Unknown user.")
         token = user['token']
-        user['lvl'] = 0
+        user['lvl'] = 1
         user['percent'] = 0
         user['lvl'] += int((int(user['mission']['dechets']) + int(user['mission']['CarbonEco']) + int(user['mission']['WaterLiter'])) / 30)
-        user['percent'] += (int(user['mission']['dechets']) + int(user['mission']['CarbonEco']) + int(user['mission']['WaterLiter'])) % 30
+        user['percent'] += float((int(user['mission']['dechets']) + int(user['mission']['CarbonEco']) + int(user['mission']['WaterLiter'])) % 30)
         jsonn = {"status": "success", "data": user}
     except Exception as e:
         return {"status": "Fail", "message": str(e)}

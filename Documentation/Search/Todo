@@ -1,14 +1,20 @@
 - Project:
-    - NyanCat
+- Objectif:
+    - [X] NyanCats
+    - [X] Référence à des séries
+    - [X] En parler sur les réseaux
+
+    - [~] 6 Colors
+
+    - [V] Messages pour génération futures
 
 - Appli:
-    - Ajout d'une donnée
     - Liste du shop
     - Liste de conseils
         - Ajouter un conseil perso // Admin verifie avant un post public ?
 
 - API:
-    - Calcul du titre de la personne
+    - Check les publications
 
 - Website:
     - Tout

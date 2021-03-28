@@ -112,13 +112,13 @@ class _ProfilState extends State<Profil> {
             SizedBox(height: 20),
             Column(
                 children: <Widget> [
-                    Text(Global.user['lvl'] == null ? "Level: 0" : "Level: " + Global.user['lvl'].toString(), style: TextStyle(fontSize: 25, color: Colors.pinkAccent)),
+                    Text(Global.user['lvl'] == null ? "Level: -1" : "Level: " + Global.user['lvl'].toString(), style: TextStyle(fontSize: 25, color: Colors.pinkAccent)),
                     SizedBox(width: 15),
                     Card(
                         child: LinearProgressIndicator(
                             backgroundColor: Colors.cyanAccent,
                             valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
-                            value: Global.user['percent'] == null ? 0 : Global.user['percent'],
+                            value: Global.user['percent'] == null ? 0.0 : Global.user['percent'] * 1.000,
                         )
                     ),
                 ],
